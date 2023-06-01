@@ -10,7 +10,9 @@ class MslFetcherProvider<T> extends Cubit<MslFetcherProviderState> {
 
   MslFetcherProvider({
     required this.onDataFetched,
-  }) : super(MslFetcherProviderLoading());
+  }) : super(MslFetcherProviderLoading()) {
+    fetchDataAndEmitState();
+  }
 
   /// Fetch the data from the given method and emit the specific state
   ///
