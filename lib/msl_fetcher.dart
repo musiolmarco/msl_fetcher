@@ -1,5 +1,6 @@
 library msl_fetcher;
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msl_fetcher/msl_fetcher_provider.dart';
@@ -45,6 +46,7 @@ class MslFetcher<T> extends StatelessWidget {
             return loadingWidget;
           } else if (state is MslFetcherProviderDataAvailable<T>) {
             return dataAvailableWidget;
+
           } else {
             return fetchingErrorWidget;
           }
