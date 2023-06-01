@@ -17,10 +17,8 @@ class TodosPage extends StatelessWidget {
           child: MslFetcher<List<Todo>>(
             showErrorLogs: true,
             fetchData: () => _todosRepository.getExampleTodosFromApi(),
-            dataAvailableWidget: (List<Todo> availableData) => Expanded(
-              child: TodoListView(
-                todos: availableData,
-              ),
+            dataAvailableWidget: (List<Todo> availableData) => TodoListView(
+              todos: availableData,
             ),
             fetchingErrorWidget: const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
