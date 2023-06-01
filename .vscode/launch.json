@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "msl_fetcher",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "msl_fetcher (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "msl_fetcher (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fetching_from_api_example",
+            "cwd": "example/fetching_from_api_example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fetching_from_api_example (profile mode)",
+            "cwd": "example/fetching_from_api_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fetching_from_api_example (release mode)",
+            "cwd": "example/fetching_from_api_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

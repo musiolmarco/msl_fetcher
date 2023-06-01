@@ -31,12 +31,12 @@ class MslFetcher<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MslFetcherProvider(onDataFetched: onDataFetched),
-      child: BlocBuilder<MslFetcherProvider, MslFetcherProviderState>(
+      create: (_) => MslFetcherProvider<T>(onDataFetched: onDataFetched),
+      child: BlocBuilder<MslFetcherProvider<T>, MslFetcherProviderState>(
         builder: (context, state) {
           if (state is MslFetcherProviderLoading) {
             return loadingWidget;
-          } else if (state is MslFetcherProviderDataAvailable) {
+          } else if (state is MslFetcherProviderDataAvailable<T>) {
             return dataAvailableWidget;
           } else {
             return fetchingErrorWidget;
