@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -8,8 +10,12 @@ class MslFetcherProvider<T> extends Cubit<MslFetcherProviderState> {
   /// The method that fetches and returns the data
   final Future<T> Function() onDataFetched;
 
+  /// If true logging errors into console
+  final bool? showErrorLogs;
+
   MslFetcherProvider({
     required this.onDataFetched,
+    this.showErrorLogs,
   }) : super(MslFetcherProviderLoading()) {
     fetchDataAndEmitState();
   }
@@ -30,6 +36,10 @@ class MslFetcherProvider<T> extends Cubit<MslFetcherProviderState> {
         ),
       );
     } catch (e) {
+      if (showErrorLogs != null && showErrorLogs!) {
+        log('MslFetchProvider<${T.toString()}> Exception: ${e.toString()}');
+      }
+
       emit(
         MslFetcherProviderError(),
       );
