@@ -8,6 +8,6 @@ class TodosApi {
       'https://jsonplaceholder.typicode.com/todos',
     );
 
-    return response.data;
+    return List<Map<String, dynamic>>.from(response.data);
   }
 }

@@ -9,11 +9,17 @@ class TodosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MslFetcher(
-        onDataFetched: () => _todosRepository.getExampleTodosFromApi(),
-        dataAvailableWidget: const Text('Data available'),
-        fetchingErrorWidget: const Text('Error while fetching...'),
-        loadingWidget: const Text('Loading...'),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: MslFetcher(
+            showErrorLogs: true,
+            onDataFetched: () => _todosRepository.getExampleTodosFromApi(),
+            dataAvailableWidget: const Text('Data available'),
+            fetchingErrorWidget: const Text('Error while fetching...'),
+            loadingWidget: const Text('Loading...'),
+          ),
+        ),
       ),
     );
   }

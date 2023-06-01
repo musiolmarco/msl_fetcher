@@ -20,18 +20,25 @@ class MslFetcher<T> extends StatelessWidget {
   /// Tis [Widget] is displayed if there was an error while fetching the data
   final Widget fetchingErrorWidget;
 
+  /// Pass [showErrorLog] as true if you want to log errors into the console
+  final bool? showErrorLogs;
+
   const MslFetcher({
     super.key,
     required this.onDataFetched,
     required this.dataAvailableWidget,
     required this.fetchingErrorWidget,
     required this.loadingWidget,
+    this.showErrorLogs,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MslFetcherProvider<T>(onDataFetched: onDataFetched),
+      create: (_) => MslFetcherProvider<T>(
+        onDataFetched: onDataFetched,
+        showErrorLogs: showErrorLogs,
+      ),
       child: BlocBuilder<MslFetcherProvider<T>, MslFetcherProviderState>(
         builder: (context, state) {
           if (state is MslFetcherProviderLoading) {

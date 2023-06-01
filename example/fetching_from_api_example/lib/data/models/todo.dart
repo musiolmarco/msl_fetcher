@@ -38,8 +38,8 @@ class Todo {
 
   factory Todo.fromMap(Map<String, dynamic> map) {
     return Todo(
-      userId: map['userId'] as String,
-      id: map['id'] as String,
+      userId: map['userId'].toString(),
+      id: map['id'].toString(),
       title: map['title'] as String,
       completed: map['completed'] as bool,
     );
