@@ -27,7 +27,7 @@ MslFetcher<List<Todo>>(
 ```
 
 ### `fetchData` 📂
-This method should fetch & return the available data coming from the backend. It is important that it matches the generic from the `MslFetcher`. In this case it's `<List<Todo>>`
+This method should fetch & return the available data coming from the backend. It is important that it matches the generic from the `MslFetcher`. In this case it's `<List<Todo>>`.
 
 ### `dataAvailableWidget` ⬇️
 This `Widget` is displayed if the data is fetched and returned. You can access the downloaded data by the `availableData`.
