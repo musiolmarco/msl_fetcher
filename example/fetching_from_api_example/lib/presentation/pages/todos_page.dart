@@ -1,5 +1,6 @@
 import 'package:fetching_from_api_example/data/models/todo.dart';
 import 'package:fetching_from_api_example/data/repositories/todos_repository.dart';
+import 'package:fetching_from_api_example/presentation/widgets/todo_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:msl_fetcher/msl_fetcher.dart';
 
@@ -16,7 +17,11 @@ class TodosPage extends StatelessWidget {
           child: MslFetcher<List<Todo>>(
             showErrorLogs: true,
             fetchData: () => _todosRepository.getExampleTodosFromApi(),
-            dataAvailableWidget: const Text('Data available'),
+            dataAvailableWidget: (List<Todo> availableData) => Expanded(
+              child: TodoListView(
+                todos: availableData,
+              ),
+            ),
             fetchingErrorWidget: const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
           ),

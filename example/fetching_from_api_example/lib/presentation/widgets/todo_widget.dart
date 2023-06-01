@@ -12,9 +12,7 @@ class TodoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(
-        todo.title,
-      ),
+      title: Text(todo.title),
       trailing: Checkbox(
         value: todo.completed,
         onChanged: (_) {},

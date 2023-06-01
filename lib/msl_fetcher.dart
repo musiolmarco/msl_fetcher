@@ -16,7 +16,7 @@ class MslFetcher<T> extends StatelessWidget {
   final Widget loadingWidget;
 
   /// This [Widget] is displayed if the data is available
-  final Widget dataAvailableWidget;
+  final Widget Function(T availableData) dataAvailableWidget;
 
   /// Tis [Widget] is displayed if there was an error while fetching the data
   final Widget fetchingErrorWidget;
@@ -45,8 +45,7 @@ class MslFetcher<T> extends StatelessWidget {
           if (state is MslFetcherProviderLoading) {
             return loadingWidget;
           } else if (state is MslFetcherProviderDataAvailable<T>) {
-            return dataAvailableWidget;
-
+            return dataAvailableWidget(state.data);
           } else {
             return fetchingErrorWidget;
           }
