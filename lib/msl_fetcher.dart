@@ -9,7 +9,7 @@ import 'package:msl_fetcher/msl_fetcher_provider.dart';
 /// Use this [Widget] to fetch data and handle all states in under a minute
 class MslFetcher<T> extends StatelessWidget {
   /// The method that fetches and returns the data
-  final Future<T> Function() onDataFetched;
+  final Future<T> Function() fetchData;
 
   /// This [Widget] is displayed while the data is being fetched
   final Widget loadingWidget;
@@ -25,7 +25,7 @@ class MslFetcher<T> extends StatelessWidget {
 
   const MslFetcher({
     super.key,
-    required this.onDataFetched,
+    required this.fetchData,
     required this.dataAvailableWidget,
     required this.fetchingErrorWidget,
     required this.loadingWidget,
@@ -36,7 +36,7 @@ class MslFetcher<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => MslFetcherProvider<T>(
-        onDataFetched: onDataFetched,
+        onDataFetched: fetchData,
         showErrorLogs: showErrorLogs,
       ),
       child: BlocBuilder<MslFetcherProvider<T>, MslFetcherProviderState>(

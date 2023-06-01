@@ -15,7 +15,7 @@ class TodosPage extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: MslFetcher<List<Todo>>(
             showErrorLogs: true,
-            onDataFetched: () => _todosRepository.getExampleTodosFromApi(),
+            fetchData: () => _todosRepository.getExampleTodosFromApi(),
             dataAvailableWidget: const Text('Data available'),
             fetchingErrorWidget: const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
