@@ -20,7 +20,8 @@ class TodosPage extends StatelessWidget {
             dataAvailableWidget: (List<Todo> availableData) => TodoListView(
               todos: availableData,
             ),
-            fetchingErrorWidget: const Text('Error while fetching...'),
+            fetchingErrorWidget: (error) =>
+                const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
           ),
         ),

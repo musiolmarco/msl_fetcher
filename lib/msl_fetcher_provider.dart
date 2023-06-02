@@ -41,7 +41,9 @@ class MslFetcherProvider<T> extends Cubit<MslFetcherProviderState> {
       }
 
       emit(
-        MslFetcherProviderError(),
+        MslFetcherProviderError(
+          error: e,
+        ),
       );
     }
   }

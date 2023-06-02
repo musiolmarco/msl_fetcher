@@ -3,6 +3,7 @@ library msl_fetcher;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:msl_fetcher/data/exceptions/msl_fetcher_no_state_available.dart';
 import 'package:msl_fetcher/msl_fetcher_provider.dart';
 
 /// The [MslFetcher] is a [Widget] that setup the whole fetching progress
@@ -16,10 +17,14 @@ class MslFetcher<T> extends StatelessWidget {
   final Widget loadingWidget;
 
   /// This [Widget] is displayed if the data is available
+  ///
+  /// [availableData] is the data that got fetched from the backend
   final Widget Function(T availableData) dataAvailableWidget;
 
   /// Tis [Widget] is displayed if there was an error while fetching the data
-  final Widget fetchingErrorWidget;
+  ///
+  /// [error] is the [Object] that got catched by the [MslFetcherProvider]
+  final Widget Function(Object error) fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
@@ -47,7 +52,11 @@ class MslFetcher<T> extends StatelessWidget {
           } else if (state is MslFetcherProviderDataAvailable<T>) {
             return dataAvailableWidget(state.data);
           } else {
-            return fetchingErrorWidget;
+            return fetchingErrorWidget(
+              (state is MslFetcherProviderError)
+                  ? state.error
+                  : MslFetcherNoStateAvailable(),
+            );
           }
         },
       ),
