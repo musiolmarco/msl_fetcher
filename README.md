@@ -15,13 +15,13 @@ dependencies:
 The main `Widget` of this package is the `MslFetcher` widget.
 ```dart
 MslFetcher<List<Todo>>(
+            showErrorLogs: true,
             fetchData: () => _todosRepository.getExampleTodosFromApi(),
-            dataAvailableWidget: (List<Todo> availableData) => Expanded(
-              child: TodoListView(
-                todos: availableData,
-              ),
+            dataAvailableWidget: (List<Todo> availableData) => TodoListView(
+              todos: availableData,
             ),
-            fetchingErrorWidget: const Text('Error while fetching...'),
+            fetchingErrorWidget: (error) =>
+                const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
           ),
 ```
@@ -33,7 +33,7 @@ This method should fetch & return the available data coming from the backend. It
 This `Widget` is displayed if the data is fetched and returned. You can access the downloaded data by the `availableData`.
 
 ### `fetchingErrorWidget` ⚠️
-This `Widget` is displayed if there was an error while fetching and returning the data. Here you can for example display an error message that says "An error occured. Please try again".
+This `Widget` is displayed if there was an error while fetching and returning the data. Here you can for example display an error message that says "An error occured. Please try again". You can also use the `error` `Object` if you want to handle something based on what error has been catched.
 
 ### `loadingWidget` 🕑
 This `Widget` is displayed while the data is being fetched.
@@ -48,10 +48,14 @@ Here you can find a code snipped from the source code that explains everything y
   final Widget loadingWidget;
 
   /// This [Widget] is displayed if the data is available
+  ///
+  /// [availableData] is the data that got fetched from the backend
   final Widget Function(T availableData) dataAvailableWidget;
 
   /// Tis [Widget] is displayed if there was an error while fetching the data
-  final Widget fetchingErrorWidget;
+  ///
+  /// [error] is the [Object] that got catched by the [MslFetcherProvider]
+  final Widget Function(Object error) fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
