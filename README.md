@@ -6,7 +6,7 @@ Add this lines to your pubspec.yaml dependencies.
 ```yaml
 dependencies:
   msl_fetcher:
-    hosted:
+    git:
       url: https://github.com/musiolmarco/msl_fetcher
       ref: main
 ```
