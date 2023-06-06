@@ -39,6 +39,7 @@ class MslFetcher<T> extends StatelessWidget {
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
+  /// 
   /// [onRefresh] is the function that will redo the fetch again
   final Widget Function(Object error, VoidCallback onRefresh)?
       fetchingErrorWidget;
