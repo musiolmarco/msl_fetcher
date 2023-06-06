@@ -26,6 +26,9 @@ MslFetcher<List<Todo>>(
           ),
 ```
 
+### Important ❗️
+The `fetchingErrorWidget` and `loadingWidget` widgets are optional. If you wont pass them it will use the default widgets of the package.
+
 ### `fetchData` 📂
 This method should fetch & return the available data coming from the backend. It is important that it matches the generic from the `MslFetcher`. In this case it's `<List<Todo>>`.
 
