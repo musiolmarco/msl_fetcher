@@ -20,7 +20,7 @@ MslFetcher<List<Todo>>(
             dataAvailableWidget: (List<Todo> availableData) => TodoListView(
               todos: availableData,
             ),
-            fetchingErrorWidget: (error) =>
+            fetchingErrorWidget: (error, onRefresh) =>
                 const Text('Error while fetching...'),
             loadingWidget: const Text('Loading...'),
           ),
@@ -36,7 +36,7 @@ This method should fetch & return the available data coming from the backend. It
 This `Widget` is displayed if the data is fetched and returned. You can access the downloaded data by the `availableData`.
 
 ### `fetchingErrorWidget` ⚠️
-This `Widget` is displayed if there was an error while fetching and returning the data. Here you can for example display an error message that says "An error occured. Please try again". You can also use the `error` `Object` if you want to handle something based on what error has been catched.
+This `Widget` is displayed if there was an error while fetching and returning the data. Here you can for example display an error message that says "An error occured. Please try again". You can also use the `error` `Object` if you want to handle something based on what error has been catched. The `onRefresh` method makes it available to redo the fetching process if you want to implement a "try again" button for example. 
 
 ### `loadingWidget` 🕑
 This `Widget` is displayed while the data is being fetched.
@@ -48,7 +48,7 @@ Here you can find a code snipped from the source code that explains everything y
   final Future<T> Function() fetchData;
 
   /// This [Widget] is displayed while the data is being fetched
-  final Widget loadingWidget;
+  final Widget? loadingWidget;
 
   /// This [Widget] is displayed if the data is available
   ///
@@ -58,7 +58,10 @@ Here you can find a code snipped from the source code that explains everything y
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
-  final Widget Function(Object error) fetchingErrorWidget;
+  /// 
+  /// [onRefresh] is the function that will redo the fetch again
+  final Widget Function(Object error, VoidCallback onRefresh)?
+      fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
