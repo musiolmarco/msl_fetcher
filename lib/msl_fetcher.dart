@@ -17,9 +17,9 @@ class MslFetcher<T> extends StatelessWidget {
   );
 
   /// The default error [Widget] that is used if no [fetchingErrorWidget] is passed
-  // ignore: prefer_final_fields
-  static Widget Function(VoidCallback onRefresh) _defaultErrorWidget =
-      (VoidCallback onRefresh) => Center(
+  static final Widget Function(Object error, VoidCallback onRefresh)
+      // ignore: prefer_function_declarations_over_variables
+      _defaultErrorWidget = (Object error, VoidCallback onRefresh) => Center(
             child: MslFetcherDefaultErrorWidget(
               onRefresh: () => onRefresh(),
             ),
@@ -69,13 +69,14 @@ class MslFetcher<T> extends StatelessWidget {
           } else if (state is MslFetcherProviderDataAvailable<T>) {
             return dataAvailableWidget(state.data);
           } else {
+            Object error = (state is MslFetcherProviderError)
+                ? state.error
+                : MslFetcherNoStateAvailable();
+
             return fetchingErrorWidget != null
-                ? fetchingErrorWidget!(
-                    (state is MslFetcherProviderError)
-                        ? state.error
-                        : MslFetcherNoStateAvailable(),
-                  )
+                ? fetchingErrorWidget!(error)
                 : _defaultErrorWidget(
+                    error,
                     () => context
                         .read<MslFetcherProvider<T>>()
                         .fetchDataAndEmitState(),
