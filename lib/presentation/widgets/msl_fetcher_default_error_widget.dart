@@ -8,9 +8,9 @@ class MslFetcherDefaultErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Text(
+        Text(
           'An error has occurred',
           style: TextStyle(
             fontSize: 24.0,
@@ -18,21 +18,12 @@ class MslFetcherDefaultErrorWidget extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
+        SizedBox(
           height: 5.0,
         ),
-        const Text(
+        Text(
           'An error occurred while loading the data. Please try again.',
           textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 5.0,
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.refresh,
-          ),
         ),
       ],
     );
