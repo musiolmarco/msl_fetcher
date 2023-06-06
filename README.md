@@ -11,6 +11,20 @@ dependencies:
       ref: main
 ```
 
+## Setup your own default widgets (optional) 👷
+```dart
+void main() {
+
+  MslFetcher.setup(
+    defaultErrorWidget: (error, onRefresh) => const Text('An error has occured...'),
+    defaultLoadingWidget: const CircularProgressIndicator(),
+  );
+
+  runApp(const MyApp());
+}
+```
+You can use the `MslFetcher.setup()` method in the `void main()` method to setup your own default widgets. This widgets will be displayed by default if you don't provide any other widgets into the `MslFetcher()`.
+
 ## Fetching, displaying data & handling states 🗂
 The main `Widget` of this package is the `MslFetcher` widget.
 ```dart
