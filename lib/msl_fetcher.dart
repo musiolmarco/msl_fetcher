@@ -12,12 +12,12 @@ import 'package:msl_fetcher/presentation/widgets/msl_fetcher_default_error_widge
 class MslFetcher<T> extends StatelessWidget {
   /// The default loading [Widget] that is used if no [loadingWidget]
   /// is passed.
-  static const Widget _defaultLoadingWidget = Center(
+  static Widget _defaultLoadingWidget = const Center(
     child: CircularProgressIndicator(),
   );
 
   /// The default error [Widget] that is used if no [fetchingErrorWidget] is passed
-  static final Widget Function(Object error, VoidCallback onRefresh)
+  static Widget Function(Object error, VoidCallback onRefresh)
       // ignore: prefer_function_declarations_over_variables
       _defaultErrorWidget = (Object error, VoidCallback onRefresh) => Center(
             child: MslFetcherDefaultErrorWidget(
@@ -39,7 +39,7 @@ class MslFetcher<T> extends StatelessWidget {
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
-  /// 
+  ///
   /// [onRefresh] is the function that will redo the fetch again
   final Widget Function(Object error, VoidCallback onRefresh)?
       fetchingErrorWidget;
@@ -55,6 +55,17 @@ class MslFetcher<T> extends StatelessWidget {
     this.loadingWidget,
     this.showErrorLogs,
   });
+
+  /// This method lets the user setup his own default [Widget]s that will be displayed
+  static void setup({
+    Widget Function(Object error, VoidCallback onRefresh)? defaultErrorWidget,
+    Widget? defaultLoadingWidget,
+  }) {
+    if (defaultErrorWidget != null) _defaultErrorWidget = defaultErrorWidget;
+    if (defaultLoadingWidget != null) {
+      _defaultLoadingWidget = defaultLoadingWidget;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
