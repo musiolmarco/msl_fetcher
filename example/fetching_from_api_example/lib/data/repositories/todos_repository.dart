@@ -13,6 +13,7 @@ class TodosRepository {
       todos.add(Todo.fromMap(todoData));
     }
 
+    // TODO: Remove before release
     throw Exception();
 
     return todos;

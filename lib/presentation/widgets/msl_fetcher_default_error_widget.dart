@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:msl_fetcher/msl_fetcher.dart';
-import 'package:msl_fetcher/msl_fetcher_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// This widget is displayed if the [MslFetcher] got an error and no
 /// other error [Widget] is passed to it
