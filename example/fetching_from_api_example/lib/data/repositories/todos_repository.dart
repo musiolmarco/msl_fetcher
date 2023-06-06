@@ -13,6 +13,8 @@ class TodosRepository {
       todos.add(Todo.fromMap(todoData));
     }
 
+    throw Exception();
+
     return todos;
   }
 }

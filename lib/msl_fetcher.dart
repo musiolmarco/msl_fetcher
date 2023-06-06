@@ -40,8 +40,8 @@ class MslFetcher<T> extends StatelessWidget {
     super.key,
     required this.fetchData,
     required this.dataAvailableWidget,
-    required this.fetchingErrorWidget,
-    required this.loadingWidget,
+    this.fetchingErrorWidget,
+    this.loadingWidget,
     this.showErrorLogs,
   });
 
