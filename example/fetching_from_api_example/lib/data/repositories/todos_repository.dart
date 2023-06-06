@@ -13,8 +13,6 @@ class TodosRepository {
       todos.add(Todo.fromMap(todoData));
     }
 
-
-
     return todos;
   }
 }

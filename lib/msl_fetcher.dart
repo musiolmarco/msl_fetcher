@@ -17,7 +17,9 @@ class MslFetcher<T> extends StatelessWidget {
   );
 
   /// The default error [Widget] that is used if no [fetchingErrorWidget] is passed
-  static const Widget _defaultErrorWidget = MslFetcherDefaultErrorWidget();
+  static const Widget _defaultErrorWidget = Center(
+    child: MslFetcherDefaultErrorWidget(),
+  );
 
   /// The method that fetches and returns the data
   final Future<T> Function() fetchData;
