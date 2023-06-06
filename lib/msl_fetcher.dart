@@ -39,7 +39,9 @@ class MslFetcher<T> extends StatelessWidget {
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
-  final Widget Function(Object error)? fetchingErrorWidget;
+  /// [onRefresh] is the function that will redo the fetch again
+  final Widget Function(Object error, VoidCallback onRefresh)?
+      fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
@@ -74,7 +76,12 @@ class MslFetcher<T> extends StatelessWidget {
                 : MslFetcherNoStateAvailable();
 
             return fetchingErrorWidget != null
-                ? fetchingErrorWidget!(error)
+                ? fetchingErrorWidget!(
+                    error,
+                    () => context
+                        .read<MslFetcherProvider<T>>()
+                        .fetchDataAndEmitState(),
+                  )
                 : _defaultErrorWidget(
                     error,
                     () => context
