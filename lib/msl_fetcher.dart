@@ -12,7 +12,9 @@ import 'package:msl_fetcher/presentation/widgets/msl_fetcher_default_error_widge
 class MslFetcher<T> extends StatelessWidget {
   /// The default loading [Widget] that is used if no [loadingWidget]
   /// is passed.
-  static const Widget _defaultLoadingWidget = CircularProgressIndicator();
+  static const Widget _defaultLoadingWidget = Center(
+    child: CircularProgressIndicator(),
+  );
 
   /// The default error [Widget] that is used if no [fetchingErrorWidget] is passed
   static const Widget _defaultErrorWidget = MslFetcherDefaultErrorWidget();
