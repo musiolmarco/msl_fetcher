@@ -12,7 +12,6 @@ class TodosRepository {
     for (Map<String, dynamic> todoData in data) {
       todos.add(Todo.fromMap(todoData));
     }
-
     return todos;
   }
 }
