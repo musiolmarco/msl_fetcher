@@ -4,13 +4,17 @@ import 'package:msl_fetcher/msl_fetcher.dart';
 /// This widget is displayed if the [MslFetcher] got an error and no
 /// other error [Widget] is passed to it
 class MslFetcherDefaultErrorWidget extends StatelessWidget {
-  const MslFetcherDefaultErrorWidget({super.key});
+  final VoidCallback onRefresh;
+  const MslFetcherDefaultErrorWidget({
+    super.key,
+    required this.onRefresh,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Text(
+        const Text(
           'An error has occurred',
           style: TextStyle(
             fontSize: 24.0,
@@ -18,12 +22,21 @@ class MslFetcherDefaultErrorWidget extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
-        Text(
+        const Text(
           'An error occurred while loading the data. Please try again.',
           textAlign: TextAlign.center,
+        ),
+        const SizedBox(
+          height: 5.0,
+        ),
+        IconButton(
+          onPressed: () => onRefresh(),
+          icon: const Icon(
+            Icons.refresh,
+          ),
         ),
       ],
     );
