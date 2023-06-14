@@ -5,10 +5,7 @@ With msl_fetcher you can fetch and handle data easily. Handle all states (Loadin
 Add this lines to your pubspec.yaml dependencies.
 ```yaml
 dependencies:
-  msl_fetcher:
-    git:
-      url: https://github.com/musiolmarco/msl_fetcher
-      ref: main
+  msl_fetcher: <Newest version>
 ```
 
 ## Setup your own default widgets (optional) 👷
