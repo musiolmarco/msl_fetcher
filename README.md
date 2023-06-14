@@ -2,7 +2,7 @@
 With msl_fetcher you can fetch and handle data easily. Handle all states (Loading, Error, Data available) within a minute.🕚
 
 ## Getting started 🚀
-Add this lines to your pubspec.yaml dependencies.
+Add this lines to your pubspec.yaml dependencies:
 ```yaml
 dependencies:
   msl_fetcher: <Newest version>
