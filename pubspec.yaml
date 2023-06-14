@@ -1,6 +1,6 @@
 name: msl_fetcher
 description: Fetching data and handling states the easiest way
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/musiolmarco/msl_fetcher
 
 environment:
