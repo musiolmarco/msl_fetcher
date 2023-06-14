@@ -16,7 +16,8 @@ class TodosPageWithoutCustomWidgets extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: MslFetcher<List<Todo>>(
             fetchData: () => _todosRepository.getExampleTodosFromApi(),
-            dataAvailableWidget: (List<Todo> availableData) => TodoListView(
+            dataAvailableWidget: (List<Todo> availableData, onRefresh) =>
+                TodoListView(
               todos: availableData,
             ),
           ),
