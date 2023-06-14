@@ -34,15 +34,23 @@ class MslFetcher<T> extends StatelessWidget {
   /// This [Widget] is displayed if the data is available
   ///
   /// [availableData] is the data that got fetched from the backend
-  final Widget Function(T availableData) dataAvailableWidget;
+  ///
+  /// [onRefresh] is the method that will refresh the fetching.
+  /// This can be used if you add some data and watch to refetch the data.
+  final Widget Function(
+    T availableData,
+    VoidCallback onRefresh,
+  ) dataAvailableWidget;
 
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
   ///
   /// [onRefresh] is the function that will redo the fetch again
-  final Widget Function(Object error, VoidCallback onRefresh)?
-      fetchingErrorWidget;
+  final Widget Function(
+    Object error,
+    VoidCallback onRefresh,
+  )? fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
@@ -81,7 +89,11 @@ class MslFetcher<T> extends StatelessWidget {
                 ? loadingWidget!
                 : _defaultLoadingWidget;
           } else if (state is MslFetcherProviderDataAvailable<T>) {
-            return dataAvailableWidget(state.data);
+            return dataAvailableWidget(
+              state.data,
+              () =>
+                  context.read<MslFetcherProvider<T>>().fetchDataAndEmitState(),
+            );
           } else {
             Object error = (state is MslFetcherProviderError)
                 ? state.error

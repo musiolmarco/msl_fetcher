@@ -31,7 +31,7 @@ The main `Widget` of this package is the `MslFetcher` widget.
 MslFetcher<List<Todo>>(
             showErrorLogs: true,
             fetchData: () => _todosRepository.getExampleTodosFromApi(),
-            dataAvailableWidget: (List<Todo> availableData) => TodoListView(
+            dataAvailableWidget: (List<Todo> availableData, onRefresh) => TodoListView(
               todos: availableData,
             ),
             fetchingErrorWidget: (error, onRefresh) =>
@@ -47,7 +47,7 @@ The `fetchingErrorWidget` and `loadingWidget` widgets are optional. If you wont 
 This method should fetch & return the available data coming from the backend. It is important that it matches the generic from the `MslFetcher`. In this case it's `<List<Todo>>`.
 
 ### `dataAvailableWidget` ⬇️
-This `Widget` is displayed if the data is fetched and returned. You can access the downloaded data by the `availableData`.
+This `Widget` is displayed if the data is fetched and returned. You can access the downloaded data by the `availableData`. It also returns the `onRefresh` method. With it you can refresh the fetch if necessary. This can be useful if you add some data to your database and refetch it for example.
 
 ### `fetchingErrorWidget` ⚠️
 This `Widget` is displayed if there was an error while fetching and returning the data. Here you can for example display an error message that says "An error occured. Please try again". You can also use the `error` `Object` if you want to handle something based on what error has been catched. The `onRefresh` method makes it available to redo the fetching process if you want to implement a "try again" button for example. 
@@ -67,15 +67,23 @@ Here you can find a code snipped from the source code that explains everything y
   /// This [Widget] is displayed if the data is available
   ///
   /// [availableData] is the data that got fetched from the backend
-  final Widget Function(T availableData) dataAvailableWidget;
+  ///
+  /// [onRefresh] is the method that will refresh the fetching.
+  /// This can be used if you add some data and watch to refetch the data.
+  final Widget Function(
+    T availableData,
+    VoidCallback onRefresh,
+  ) dataAvailableWidget;
 
   /// Tis [Widget] is displayed if there was an error while fetching the data
   ///
   /// [error] is the [Object] that got catched by the [MslFetcherProvider]
-  /// 
+  ///
   /// [onRefresh] is the function that will redo the fetch again
-  final Widget Function(Object error, VoidCallback onRefresh)?
-      fetchingErrorWidget;
+  final Widget Function(
+    Object error,
+    VoidCallback onRefresh,
+  )? fetchingErrorWidget;
 
   /// Pass [showErrorLog] as true if you want to log errors into the console
   final bool? showErrorLogs;
