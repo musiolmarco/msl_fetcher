@@ -21,3 +21,5 @@ This new version is having default widgets now. The loading & error widget are o
 ## pub.dev release🌐 (1.0.0)
 
 Prepared package for pub.dev. Also implemented the onRefresh method for the data available widget.
+
+## Adjusted README 📄 (1.0.1)
